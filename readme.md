@@ -93,64 +93,64 @@
 ## C. Screenshots
 | ![Image Description](screenshots/3.png) |
 |:-:|
-| *Gateway Get License by ID* |
+| *Figure 1. Gateway Get License by ID* |
 
 | ![Image Description](screenshots/2.png) |
 |:-:|
-| *Gateway Create License* |
+| *Figure 2. Gateway Create License* |
 
 | ![Image Description](screenshots/4.png) |
 |:-:|
-| *Gateway Update License* |
+| *Figure 3. Gateway Update License* |
 
 | ![Image Description](screenshots/5.png) |
 |:-:|
-| *Gateway Delete License* |
+| *Figure 4. Gateway Delete License* |
 
 | ![Image Description](screenshots/7.png) |
 |:-:|
-| *Gateway Get License by Organization* |
+| *Figure 5. Gateway Get License by Organization* |
 
 | ![Image Description](screenshots/8.png) |
 |:-:|
-| *Gateway Get Organization by ID* |
+| *Figure 6. Gateway Get Organization by ID* |
 
 | ![Image Description](screenshots/6.png) |
 |:-:|
-| *Keycloak Get Token* |
+| *Figure 7. Keycloak Get Token* |
 
 | ![Image Description](screenshots/17.png) |
 |:-:|
-| *Spring Security* |
+| *Figure 8. Spring Security* |
 
 | ![Image Description](screenshots/10.png) |
 |:-:|
-| *Kafka Event Producer* |
+| *Figure 9. Kafka Event Producer* |
 
 | ![Image Description](screenshots/9.png) |
 |:-:|
-| *Kafka Event Consumer* |
+| *Figure 10. Kafka Event Consumer* |
 
 | ![Image Description](screenshots/12.png) |
 |:-:|
-| *Trace Correlation ID Parent* |
+| *Figure 11. Trace Correlation ID Parent* |
 
 | ![Image Description](screenshots/11.png) |
 |:-:|
-| *Trace Correlation ID Child* |
+| *Figure 12. Trace Correlation ID Child* |
 
 | ![Image Description](screenshots/13.png) |
 |:-:|
-| *Retrieve Data from Redis* |
+| *Figure 13. Retrieve Data from Redis* |
 
 | ![Image Description](screenshots/14.png) |
 |:-:|
-| *Keycloak UI* |
+| *Figure 14. Keycloak UI* |
 
 | ![Image Description](screenshots/15.png) |
 |:-:|
-| *Grafana Dashboard* |
+| *Figure 15. Grafana Dashboard* |
 
 | ![Image Description](screenshots/16.png) |
 |:-:|
-| *Database in DBeaver UI* |
+| *Figure 16. Database in DBeaver UI* |
