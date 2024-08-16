@@ -1,0 +1,22 @@
+spring:
+    application:
+      name: config-server
+    profiles:
+        active:
+        - native
+    cloud:
+        config:
+            server:
+                native:
+                    search-locations: classpath:/config
+                git: 
+                    uri: https://github.com/lareza-farhan-wanaghi/example-config.git
+                vault: 
+                    port: 8200 
+                    host: 127.0.0.1 
+                    backend: config
+                    kvVersion: 2
+server:
+    port: 8071
+encrypt:
+    key: secretkey

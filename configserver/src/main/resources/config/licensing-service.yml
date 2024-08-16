@@ -1,0 +1,106 @@
+server:
+  port: 8080 
+example:
+  property: I AM THE DEFAULT
+spring:
+  cloud:
+    stream:
+      bindings:
+        loggerSink-in-0:
+          destination: my-topic
+          content-type: application/json
+          group: licensingGroup
+      kafka:
+        binder:
+          brokers: kafka:9093
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    database: POSTGRESQL
+    show-sql: true
+  datasource:
+    platform: postgres
+    testWhileIdle: true
+    validationQuery: SELECT 1
+  database:
+    driverClassName: org.postgresql.Driver
+  
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    enabled-by-default: true
+  endpoint:
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true
+  zipkin:
+    tracing:
+      endpoint: http://tempo:9411/api/v2/spans
+  tracing:
+    sampling:
+      probability: 1.0
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+eureka:
+  instance:
+    preferIpAddress: false
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://eurekaserver:8070/eureka/
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        failureRateThreshold: 50
+        eventConsumerBufferSize: 10
+  bulkhead:
+    configs:
+      default:
+        maxWaitDuration: 10ms 
+        maxConcurrentCalls: 20
+  thread-pool-bulkhead:
+    configs:
+      default:
+        maxThreadPoolSize: 1
+        coreThreadPoolSize: 1
+        queueCapacity: 1
+        keepAliveDuration: 20ms
+  retry:
+    configs:
+      default:
+        maxRetryAttempts: 5
+        waitDuration: 10000
+  ratelimiter:
+    configs:
+      default:
+        timeoutDuration: 1000ms 
+        limitRefreshPeriod: 5000 
+        limitForPeriod: 3
+logging:
+  level:
+    org.springframework.web: WARN
+    com.optimagrowth: DEBUG
+    root: Info
+  pattern.level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+
+redis:
+  server: redis
+  port: 6379

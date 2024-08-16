@@ -1,0 +1,74 @@
+server:
+  port: 8090 
+  
+example:
+  property: I AM THE DEFAULT
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    enabled-by-default: true
+  tracing:
+    sampling:
+      probability: 1.0
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+  zipkin:
+    tracing:
+      endpoint: http://tempo:9411/api/v2/spans
+
+eureka:
+  instance:
+    preferIpAddress: false
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://eurekaserver:8070/eureka/
+
+logging:
+  level:
+    com.netflix: WARN
+    org.springframework.web: WARN
+    com.optimagrowth: DEBUG
+    org.springframework.security: DEBUG
+  pattern.level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+
+com:
+  c4-soft:
+    springaddons:
+      oidc:
+        ops:
+        - iss: http://keycloak:8080/realms/spmia-realm
+          username-claim: preferred_username
+          authorities:
+          - path: $.realm_access.roles
+            prefix: ROLE_
+          - path: $.resource_access.*.roles
+            prefix: ROLE_
+        resourceserver:
+          cors:
+          - path: /resources/**
+            allowed-origin-patterns: "*"
+          permit-all: 
+          - "/actuator/health/readiness"
+          - "/actuator/health/liveness"
+          - "/v3/api-docs/**"
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        organizationChange-out-0:
+          destination: my-topic
+          content-type: application/json
+      kafka:
+        binder:
+          brokers: kafka:9093
+redis:
+  server: redis
+  port: 6379

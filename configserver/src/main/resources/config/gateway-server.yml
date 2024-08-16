@@ -1,0 +1,34 @@
+server:
+  port: 8072
+eureka:
+  instance:
+    preferIpAddress: false
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://eurekaserver:8070/eureka/
+spring:
+  cloud:
+    gateway:
+      enabled: true
+      actuator:
+        enabled: true
+      discovery:
+        locator: 
+          enabled: true 
+          lowerCaseServiceId: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    enabled-by-default: true
+  endpoint:
+    gateway:
+      enabled: true
+logging:
+  level:
+    com.netflix: WARN
+    org.springframework.web: WARN
+    com.optimagrowth: DEBUG

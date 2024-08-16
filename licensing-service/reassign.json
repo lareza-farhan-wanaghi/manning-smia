@@ -1,0 +1,11 @@
+{
+    "version": 1,
+    "partitions": [
+      {
+        "topic": "dresses",
+        "partition": 0,
+        "replicas": [1001]
+      }
+    ]
+  }
+  
